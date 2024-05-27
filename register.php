@@ -1,4 +1,5 @@
 <?php
+session_start();
 global $dbconn, $dbname;
 include "Service/database.php";
 
@@ -6,16 +7,25 @@ if (isset($_POST['register'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql = "INSERT INTO public.\"users\" (email, password) VALUES ('$email', '$password')";
+    $sql = "INSERT INTO public.\"users\" (email, password) VALUES ('$email', '$password') RETURNING id";
     $result = pg_query($dbconn, $sql); // Eksekusi query
 
     if ($result) {
         echo "Data berhasil dimasukkan ke dalam database.";
+
+        // Ambil ID terakhir dari hasil query
+        $row = pg_fetch_assoc($result);
+        $userID = $row['id'];
+
+        // Simpan ID pengguna ke dalam session
+        $_SESSION['userID'] = $userID;
+        echo "ID terakhir yang dimasukkan adalah: $userID";
     } else {
         echo "Gagal memasukkan data ke dalam database.";
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
