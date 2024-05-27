@@ -6,7 +6,7 @@ if (isset($_POST['register'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql = "INSERT INTO public.\"user\" (email, password) VALUES ('$email', '$password')";
+    $sql = "INSERT INTO public.\"users\" (email, password) VALUES ('$email', '$password')";
     $result = pg_query($dbconn, $sql); // Eksekusi query
 
     if ($result) {

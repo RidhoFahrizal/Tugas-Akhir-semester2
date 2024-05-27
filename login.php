@@ -6,7 +6,7 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
 
     // Query untuk mencari pengguna dengan email dan password yang sesuai
-    $sql = "SELECT * FROM public.\"user\" WHERE email = '$email' AND password='$password'";
+    $sql = "SELECT * FROM public.\"users\" WHERE email = '$email' AND password='$password'";
     $result = pg_query($dbconn, $sql);
 
 
