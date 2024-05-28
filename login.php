@@ -1,23 +1,35 @@
 <?php
+session_start();
 include "Service/database.php";
 global $dbconn, $dbname;
+
 if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     // Query untuk mencari pengguna dengan email dan password yang sesuai
-    $sql = "SELECT * FROM public.\"users\" WHERE email = '$email' AND password='$password'";
-    $result = pg_query($dbconn, $sql);
-
+    $sql = "SELECT * FROM public.\"users\" WHERE email = $1 AND password = $2";
+    $result = pg_prepare($dbconn, "login_query", $sql);
+    $result = pg_execute($dbconn, "login_query", array($email, $password));
 
     if ($result) {
         // Memeriksa jumlah baris hasil
         $num_rows = pg_num_rows($result);
 
         if ($num_rows > 0) {
-            include "./Service/getIdUser.php";
-            //header("location: data-diri.php");
+            // Mengambil data pengguna
+            $row = pg_fetch_assoc($result);
+            $userID = $row['id'];
 
+            // Simpan ID pengguna ke dalam session
+            $_SESSION['userID'] = $userID;
+            $_SESSION['userEmail'] = $email;
+
+            echo "Login berhasil! ID pengguna yang sedang login adalah: $userID";
+
+            // Redirect ke halaman beranda atau halaman lain setelah login
+            // header("Location: homepage.php");
+            exit();
         } else {
             // Pengguna tidak ditemukan
             echo "Login gagal: Email atau password salah.";
@@ -27,8 +39,9 @@ if (isset($_POST['login'])) {
         echo "Terjadi kesalahan dalam proses login. Silakan coba lagi.";
     }
 }
-
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
