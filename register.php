@@ -14,12 +14,7 @@ if (isset($_POST['register'])) {
         echo "Data berhasil dimasukkan ke dalam database.";
 
         // Ambil ID terakhir dari hasil query
-        $row = pg_fetch_assoc($result);
-        $userID = $row['id'];
-
-        // Simpan ID pengguna ke dalam session
-        $_SESSION['userID'] = $userID;
-        echo "ID terakhir yang dimasukkan adalah: $userID";
+       include "./Service/getIdUser.php";
     } else {
         echo "Gagal memasukkan data ke dalam database.";
     }

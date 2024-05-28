@@ -15,8 +15,8 @@ if (isset($_POST['login'])) {
         $num_rows = pg_num_rows($result);
 
         if ($num_rows > 0) {
-
-            header("location: dashboard.php");
+            include "./Service/getIdUser.php";
+            //header("location: data-diri.php");
 
         } else {
             // Pengguna tidak ditemukan

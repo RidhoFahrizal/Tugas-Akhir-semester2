@@ -1,6 +1,6 @@
 <?php
-
-include "Service/database.php"; // Adjust the path to your database connection file
+session_start();
+include "Service/database.php";
 
 if (isset($_POST['submit'])) {
     // Ambil data dari form
