@@ -38,7 +38,7 @@
         }
         .navbar a:hover {
             background-color: #0056b3;
-            padding-bottom: 20px;
+
         }
         .content {
             padding: 20px;
