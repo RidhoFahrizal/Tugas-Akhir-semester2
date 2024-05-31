@@ -5,25 +5,32 @@ include "Service/database.php";
 
 if (!isset($_SESSION['userID'])) {
     // Jika tidak ada sesi, arahkan ke halaman login
-    //header('Location: login.php');
-    echo " sesi gagal";
+    header('Location: login.php');
     exit();
 }
 
 $userID = $_SESSION['userID'];
+$error_message = '';
 
-if (isset($_POST['create_folder'])){
+if (isset($_POST['create_folder'])) {
     $name = $_POST['folder_name'];
 
-    // Persiapkan pernyataan SQL untuk memasukkan folder baru ke dalam tabel folders
-    $sql = 'INSERT INTO folders (user_id, name) VALUES ($1, $2) RETURNING id';
+    // Periksa apakah nama folder sudah ada untuk pengguna ini
+    $sql_check_folder = 'SELECT * FROM folders WHERE user_id = $1 AND name = $2';
+    $result_check_folder = pg_prepare($dbconn, "check_folder", $sql_check_folder);
+    $result_check_folder = pg_execute($dbconn, "check_folder", array($userID, $name));
 
-    // Eksekusi pernyataan SQL dengan menggunakan pg_prepare dan pg_execute
-    $result = pg_prepare($dbconn, "insert_folder", $sql);
-    $result = pg_execute($dbconn, "insert_folder", array($userID, $name));
+    if (pg_num_rows($result_check_folder) > 0) {
+        // Jika sudah ada folder dengan nama yang sama
+        $error_message = 'Folder dengan nama yang sama sudah ada. Silakan pilih nama lain.';
+    } else {
+        // Persiapkan pernyataan SQL untuk memasukkan folder baru ke dalam tabel folders
+        $sql = 'INSERT INTO folders (user_id, name) VALUES ($1, $2) RETURNING id';
 
-    // Periksa apakah penambahan berhasil
-    
+        // Eksekusi pernyataan SQL dengan menggunakan pg_prepare dan pg_execute
+        $result = pg_prepare($dbconn, "insert_folder", $sql);
+        $result = pg_execute($dbconn, "insert_folder", array($userID, $name));
+    }
 }
 
 // Ambil daftar folder pengguna dari database
@@ -40,20 +47,25 @@ $folders = pg_fetch_all($result_fetch_folders);
     <title>Create Folder</title>
 </head>
 <body>
-<h2>Create Folder</h2>
-<form method="POST" action="documents.php">
+<h1>Create Folder</h1>
+<form action="" method="post">
     <input type="text" name="folder_name" placeholder="Folder Name" required>
     <button type="submit" name="create_folder">Create Folder</button>
 </form>
-<h2>Your Folders</h2>
-<?php if (!empty($folders)): ?>
-    <ul>
-        <?php foreach ($folders as $folder): ?>
-            <li><a href=""><?php echo htmlspecialchars($folder['name']); ?></a></li>
-        <?php endforeach; ?>
-    </ul>
-<?php else: ?>
-    <p>No folders found.</p>
+
+<?php if ($error_message): ?>
+    <p style="color: red;"><?= htmlspecialchars($error_message) ?></p>
 <?php endif; ?>
+
+<h2>Your Folders</h2>
+<ul>
+    <?php if ($folders): ?>
+        <?php foreach ($folders as $folder): ?>
+            <li><a href="folder.php?folder_id=<?= $folder['id'] ?>"><?= htmlspecialchars($folder['name']) ?></a></li>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <li>No folders found.</li>
+    <?php endif; ?>
+</ul>
 </body>
 </html>
