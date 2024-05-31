@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,49 +10,34 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
         }
-
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-            width: 100%;
+        .welcome-message {
+            justify-content: flex-start;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
-    <?php include "layout/navbar-dashboard.html"?>
+<?php include "layout/navbar-dashboard.php"?>
 
-    <div class="content">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Dashboard</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#profile">Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tasks">Dokumen</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#calendar">Calendar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#To-do-List">To-do-List</a>
-                    </li>
-                </ul>
+<div class="container-fluid content">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="welcome-message text-center">
+                <h3 class="mb-4">SELAMAT DATANG DI DASHBOARD <?php include "Service/welcomeUsername.php"; ?></h3>
+                <p class="lead">Konten utama akan ditampilkan di sini.</p>
+                <!-- Additional content can go here -->
             </div>
-        </nav>
-
-        <h3>SELAMAT DATANG DI DASHBOARD</h3>
-        <p>Konten utama akan ditampilkan di sini.</p>
+        </div>
     </div>
+</div>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

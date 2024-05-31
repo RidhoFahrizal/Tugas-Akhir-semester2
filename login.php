@@ -28,7 +28,7 @@ if (isset($_POST['login'])) {
             echo "Login berhasil! ID pengguna yang sedang login adalah: $userID";
 
             // Redirect ke halaman beranda atau halaman lain setelah login
-            // header("Location: homepage.php");
+             header("Location: dashboard.php");
             exit();
         } else {
             // Pengguna tidak ditemukan
