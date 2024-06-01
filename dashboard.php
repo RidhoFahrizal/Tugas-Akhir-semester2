@@ -21,13 +21,13 @@
     </style>
 </head>
 <body>
-<?php include "layout/navbar-dashboard.php"?>
+<?php include "navbar-dashboard.php" ?>
 
 <div class="container-fluid content">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="welcome-message text-center">
-                <h3 class="mb-4">SELAMAT DATANG DI DASHBOARD <?php include "Service/welcomeUsername.php"; ?></h3>
+                <h3 class="mb-4">SELAMAT DATANG DI DokumenKU <?php include "Service/welcomeUsername.php"; ?></h3>
                 <p class="lead">Konten utama akan ditampilkan di sini.</p>
                 <!-- Additional content can go here -->
             </div>

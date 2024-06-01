@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "Service/database.php";
-include "layout/navbar-dashboard.php";
+include "navbar-dashboard.php";
 global $dbconn, $dbname;
 
 // Ensure user is logged in

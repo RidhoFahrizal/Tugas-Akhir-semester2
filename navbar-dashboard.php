@@ -49,11 +49,11 @@
 <body>
 <div class="navbar">
     <h4>Menu</h4>
-    <a href="dashboard.php">Beranda</a>
-    <a href="user-profil.php">Profil</a>
-    <a href="documents.php">Document</a>
-    <a href="calendar.php">Calendar</a>
-    <a href="to-do-list.php">To-do-List</a>
+    <a href="/Manajemen-Tugas/dashboard.php">Beranda</a>
+    <a href="/Manajemen-Tugas/user-profil.php">Profil</a>
+    <a href="/Manajemen-Tugas/documents.php">Document</a>
+    <a href="/Manajemen-Tugas/calendar.php">Calendar</a>
+    <a href="/Manajemen-Tugas/to-do-list/to-do-list.php">To-do-List</a>
 </div>
 <div class="content">
     <!-- Main content goes here -->

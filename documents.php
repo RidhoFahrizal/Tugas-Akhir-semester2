@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "layout/navbar-dashboard.php";
+include "navbar-dashboard.php";
 include "Service/database.php";
 
 if (!isset($_SESSION['userID'])) {
@@ -45,27 +45,39 @@ $folders = pg_fetch_all($result_fetch_folders);
 <head>
     <meta charset="UTF-8">
     <title>Create Folder</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>Create Folder</h1>
-<form action="" method="post">
-    <input type="text" name="folder_name" placeholder="Folder Name" required>
-    <button type="submit" name="create_folder">Create Folder</button>
-</form>
+<div class="container mt-5">
+    <h1>Create Folder</h1>
+    <form action="" method="post" class="form-inline my-3">
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="folderName" class="sr-only">Folder Name</label>
+            <input type="text" class="form-control" id="folderName" name="folder_name" placeholder="Folder Name" required>
+        </div>
+        <button type="submit" name="create_folder" class="btn btn-primary mb-2">Create Folder</button>
+    </form>
 
-<?php if ($error_message): ?>
-    <p style="color: red;"><?= htmlspecialchars($error_message) ?></p>
-<?php endif; ?>
-
-<h2>Your Folders</h2>
-<ul>
-    <?php if ($folders): ?>
-        <?php foreach ($folders as $folder): ?>
-            <li><a href="folder.php?folder_id=<?= $folder['id'] ?>"><?= htmlspecialchars($folder['name']) ?></a></li>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <li>No folders found.</li>
+    <?php if ($error_message): ?>
+        <div class="alert alert-danger" role="alert">
+            <?= htmlspecialchars($error_message) ?>
+        </div>
     <?php endif; ?>
-</ul>
+
+    <h2>Your Folders</h2>
+    <ul class="list-group">
+        <?php if ($folders): ?>
+            <?php foreach ($folders as $folder): ?>
+                <li class="list-group-item"><a href="folder.php?folder_id=<?= $folder['id'] ?>"><?= htmlspecialchars($folder['name']) ?></a></li>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <li class="list-group-item">No folders found.</li>
+        <?php endif; ?>
+    </ul>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
