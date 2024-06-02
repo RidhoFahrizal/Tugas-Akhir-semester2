@@ -11,7 +11,7 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js'></script>
 </head>
 <body>
-
+</style>
 <div class="container">
     <h2>Kalender Jadwal</h2>
     <div id='calendar'></div>

@@ -54,6 +54,7 @@
     <a href="/Manajemen-Tugas/documents.php">Document</a>
     <a href="/Manajemen-Tugas/Calendar/displayCalendar.php">Calendar</a>
     <a href="/Manajemen-Tugas/to-do-list/to-do-list.php">To-do-List</a>
+    <a href="/Manajemen-Tugas/logout.php">Logout</a>
 </div>
 <div class="content">
     <!-- Main content goes here -->
