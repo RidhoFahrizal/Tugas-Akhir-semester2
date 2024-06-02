@@ -52,7 +52,7 @@
     <a href="/Manajemen-Tugas/dashboard.php">Beranda</a>
     <a href="/Manajemen-Tugas/user-profil.php">Profil</a>
     <a href="/Manajemen-Tugas/documents.php">Document</a>
-    <a href="/Manajemen-Tugas/calendar.php">Calendar</a>
+    <a href="/Manajemen-Tugas/Calendar/displayCalendar.php">Calendar</a>
     <a href="/Manajemen-Tugas/to-do-list/to-do-list.php">To-do-List</a>
 </div>
 <div class="content">

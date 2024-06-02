@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "layout/navbar-dashboard.php";
+include "navbar-dashboard.php";
 include "Service/database.php";
 
 if (!isset($_SESSION['userID'])) {
