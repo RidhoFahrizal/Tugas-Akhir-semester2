@@ -64,6 +64,7 @@ $files = pg_fetch_all($result_fetch_files);
                     <?= htmlspecialchars($file['file_name']) ?> (<?= $file['file_size'] ?> bytes)
                     <a href="edit.php?file_id=<?= $file['id'] ?>&folder_id=<?= $folderID ?>" class="btn btn-warning btn-sm ml-2">Edit</a>
                     <a href="delete.php?file_id=<?= $file['id'] ?>&folder_id=<?= $folderID ?>" class="btn btn-danger btn-sm ml-2">Delete</a>
+                    <a href="download.php?file_id=<?= $file['id'] ?>" class="btn btn-info btn-sm ml-2">Download</a>
                 </li>
             <?php endforeach; ?>
         <?php else: ?>

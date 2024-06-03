@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $new_file_tmp = $_FILES['new_file']['tmp_name'];
 
         // You need to specify the path where you want to save the new file
-        $upload_dir = 'uploads/';
+        $upload_dir = 'Uploads-dir';
         $new_file_path = $upload_dir . basename($new_file_name);
 
         if (move_uploaded_file($new_file_tmp, $new_file_path)) {
@@ -54,34 +54,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Edit File: <?= htmlspecialchars($file['file_name']) ?></title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Edit File</title>
 </head>
 <body>
-<div class="container mt-5">
-    <h1>Edit File: <?= htmlspecialchars($file['file_name']) ?></h1>
-
-    <?php if ($error_message): ?>
-        <div class="alert alert-danger" role="alert">
-            <?= htmlspecialchars($error_message) ?>
-        </div>
-    <?php endif; ?>
-
-    <form action="" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="newFile">Select New File</label>
-            <input type="file" class="form-control" id="newFile" name="new_file" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Update File</button>
-        <a href="folder.php?folder_id=<?= $folderID ?>" class="btn btn-secondary">Cancel</a>
-    </form>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<h2>Edit File</h2>
+<?php
+if ($error_message) {
+    echo "<p style='color:red;'>$error_message</p>";
+}
+?>
+<form action="" method="post" enctype="multipart/form-data">
+    <label for="new_file">Choose new file:</label>
+    <input type="file" name="new_file" id="new_file" required>
+    <br><br>
+    <input type="submit" value="Upload">
+</form>
 </body>
 </html>
